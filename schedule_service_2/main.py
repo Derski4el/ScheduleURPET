@@ -40,7 +40,7 @@ def login(form_data: OAuth2PasswordRequestForm = Depends(), db: Session = Depend
     access_token = create_access_token(data={"sub": str(user.id)})
     return {"access_token": access_token, "token_type": "bearer"}
 
-# Эндпоинт для логина
+# вывод расписания по группе
 @app.get("/ras{group}")
 def login(group):
     file_path = "14.04 - 18.04-1.xlsx"
