@@ -1,9 +1,10 @@
-from pydantic import BaseModel
-from typing import Optional, List
+from pydantic import BaseModel, EmailStr
+from typing import Optional
 
-# Базовые схемы
 class UserBase(BaseModel):
-    name: str
+    username: str  # было name, затем email, теперь username
+    email: EmailStr  # было email, затем username, теперь снова email с валидацией
+    phoneNumber: Optional[str] = None  # уже переименовано ранее
     role: str
 
 class UserCreate(UserBase):
@@ -11,6 +12,7 @@ class UserCreate(UserBase):
 
 class User(UserBase):
     id: int
+
     class Config:
         orm_mode = True
 
