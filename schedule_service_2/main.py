@@ -3,6 +3,7 @@ from fastapi.security import OAuth2PasswordRequestForm
 from sqlalchemy.orm import Session
 from typing import List
 import models
+from stats import parse_schedule
 import schemas
 from database import engine, get_db
 from auth import verify_password, get_password_hash, create_access_token, get_current_user, get_current_user_with_role
@@ -38,6 +39,13 @@ def login(form_data: OAuth2PasswordRequestForm = Depends(), db: Session = Depend
         )
     access_token = create_access_token(data={"sub": str(user.id)})
     return {"access_token": access_token, "token_type": "bearer"}
+
+# Эндпоинт для логина
+@app.get("/ras{group}")
+def login(group):
+    file_path = "14.04 - 18.04-1.xlsx"
+    json = parse_schedule(group_name=group,file_path=file_path)
+    return json
 
 # # Эндпоинт для загрузки Excel с расписанием
 # @app.post("/admin/upload-schedule/", response_model=schemas.ScheduleUploadResponse, dependencies=[Depends(get_current_user_with_role("admin"))])
