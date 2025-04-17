@@ -1,12 +1,15 @@
+# models/user.py
 from sqlalchemy import Column, Integer, String, ForeignKey
 from database import Base
 
 class User(Base):
     __tablename__ = "users"
     id = Column(Integer, primary_key=True, index=True)
-    name = Column(String, index=True)
+    username = Column(String, index=True)  # было name, затем email, теперь username
+    email = Column(String, unique=True, index=True, nullable=False)  # было email, затем username, теперь снова email
+    phoneNumber = Column(String, nullable=True)  # уже переименовано ранее
     role = Column(String)  # admin, teacher, student, tech
-    password = Column(String)  # Хэшированный пароль
+    password = Column(String)
 
 class Schedule(Base):
     __tablename__ = "schedules"
