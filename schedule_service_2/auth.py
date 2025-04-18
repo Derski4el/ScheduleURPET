@@ -7,15 +7,12 @@ from sqlalchemy.orm import Session
 import models
 from database import get_db
 
-# Настройки JWT
 SECRET_KEY = "your-secret-key"  # Замените на безопасный ключ
 ALGORITHM = "HS256"
 ACCESS_TOKEN_EXPIRE_MINUTES = 30
 
-# Настройка хэширования паролей
 pwd_context = CryptContext(schemes=["bcrypt"], deprecated="auto")
 
-# OAuth2 схема для токенов
 oauth2_scheme = OAuth2PasswordBearer(tokenUrl="login")
 
 def verify_password(plain_password, hashed_password):
