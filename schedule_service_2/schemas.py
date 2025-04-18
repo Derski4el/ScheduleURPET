@@ -2,9 +2,9 @@ from pydantic import BaseModel, EmailStr
 from typing import Optional
 
 class UserBase(BaseModel):
-    username: str  # было name, затем email, теперь username
-    email: EmailStr  # было email, затем username, теперь снова email с валидацией
-    phoneNumber: Optional[str] = None  # уже переименовано ранее
+    username: str
+    email: EmailStr
+    phoneNumber: Optional[str] = None
     role: str
 
 class UserCreate(UserBase):
@@ -13,22 +13,6 @@ class UserCreate(UserBase):
 class User(UserBase):
     id: int
 
-    class Config:
-        orm_mode = True
-
-# Схемы для расписания
-class ScheduleBase(BaseModel):
-    course_id: str
-    time: str
-    room: str
-    teacher_id: int
-    group_id: str
-
-class ScheduleCreate(ScheduleBase):
-    pass
-
-class Schedule(ScheduleBase):
-    id: int
     class Config:
         orm_mode = True
 
@@ -45,11 +29,6 @@ class Notification(NotificationBase):
     class Config:
         orm_mode = True
 
-# Схемы для аналитики нагрузки преподавателя
-class WorkloadAnalytics(BaseModel):
-    courses: int
-    total_hours: int
-
 # Схемы для аутентификации
 class Login(BaseModel):
     name: str
@@ -63,3 +42,11 @@ class Token(BaseModel):
 class ScheduleUploadResponse(BaseModel):
     message: str
     schedules_added: int
+
+class ScheduleItem(BaseModel):
+    day: str
+    time: str
+    subject: str
+    teacher: str
+    group: str
+    cabinet: str
