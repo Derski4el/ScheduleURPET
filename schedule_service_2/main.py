@@ -5,7 +5,6 @@ from fastapi.security import OAuth2PasswordRequestForm
 from sqlalchemy.orm import Session
 from typing import List
 import models
-from stats import parse_schedule
 from fastapi.middleware.cors import CORSMiddleware
 import schemas
 from database import engine, get_db
