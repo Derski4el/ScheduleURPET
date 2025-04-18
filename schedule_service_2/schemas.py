@@ -16,7 +16,6 @@ class User(UserBase):
     class Config:
         orm_mode = True
 
-# Схемы для уведомлений
 class NotificationBase(BaseModel):
     message: str
 
@@ -29,7 +28,6 @@ class Notification(NotificationBase):
     class Config:
         orm_mode = True
 
-# Схемы для аутентификации
 class Login(BaseModel):
     name: str
     password: str
@@ -38,7 +36,6 @@ class Token(BaseModel):
     access_token: str
     token_type: str
 
-# Схема для ответа при загрузке расписания
 class ScheduleUploadResponse(BaseModel):
     message: str
     schedules_added: int
