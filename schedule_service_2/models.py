@@ -5,9 +5,9 @@ from database import Base
 class User(Base):
     __tablename__ = "users"
     id = Column(Integer, primary_key=True, index=True)
-    username = Column(String, index=True)  # было name, затем email, теперь username
-    email = Column(String, unique=True, index=True, nullable=False)  # было email, затем username, теперь снова email
-    phoneNumber = Column(String, nullable=True)  # уже переименовано ранее
+    username = Column(String, index=True)
+    email = Column(String, unique=True, index=True, nullable=False)
+    phoneNumber = Column(String, nullable=True)
     role = Column(String)  # admin, teacher, student, tech
     password = Column(String)
 
